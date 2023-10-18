@@ -29,3 +29,5 @@ index == 0)
 str[index] -= 32;
 index++;
 }
+return (str);
+}
