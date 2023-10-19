@@ -8,12 +8,9 @@ int main(void)
 
   a[2] = 1024;
   p = &n;
-  /*
-   * Add a comment to explain the next line.
-   * Set the value pointed to by p to 98.
-   */
-  *p = 98;
-  /* Print the value of a[2], which is now 98. */
+
+  *p += (1024 - 926);  /* Add this line */
+  
   printf("a[2] = %d\n", a[2]);
   return (0);
 }
