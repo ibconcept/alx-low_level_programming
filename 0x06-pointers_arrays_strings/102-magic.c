@@ -1,12 +1,12 @@
-#include <main.h>
-/* This is the main function, the entry point of the program. */
+#include <stdio.h>
+
 int main(void)
 {
 int n;
 int a[5];
 int *p;
 
-a[2] = 1024;
+ia[2] = 1024;
 p = &n;
 /*
 * write your line of code here...
