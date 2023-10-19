@@ -1,5 +1,5 @@
 #include <main.h>
-
+/* This is the main function, the entry point of the program. */
 int main(void)
 {
 int n;
