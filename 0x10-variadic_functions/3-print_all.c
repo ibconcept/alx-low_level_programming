@@ -1,33 +1,48 @@
 #include "variadic_functions.h"
-#include <stdio.h>
-#include <stdarg.h>
 
 /**
- * print_strings - Display strings with a new line in between.
- * @separator: The string to be shown between strings.
- * @n: The count of strings provided to the function.
- * @...: An unspecified count of strings to display.
- * Description: If separator is NULL, it won't be displayed.
- * If any of the strings is NULL, "(nil)" will be displayed.
+ * print_all - prints anything
+ * @format: list of types of arguments passed to the function
  */
-void print_strings(const char *separator, const unsigned int n, ...)
+void print_all(const char * const format, ...)
 {
-	va_list strings;
-	char *str;
-	unsigned int index;
+	int i = 0;
+	char *str, *sep = "";
 
-	va_start(strings, n);
+	va_list list;
 
-	for (index = 0; index < n; index++)
+	va_start(list, format);
+
+	if (format)
 	{
-		str = va_arg(strings, char *);
-		if (str == NULL)
-			printf("(nil)");
-		else
-			printf("%s", str);
-		if (separator != NULL && index != (n - 1))
-			printf("%s", separator);
+		while (format[i])
+		{
+			switch (format[i])
+			{
+				case 'c':
+					printf("%s%c", sep, va_arg(list, int));
+					break;
+				case 'i':
+					printf("%s%d", sep, va_arg(list, int));
+					break;
+				case 'f':
+					printf("%s%f", sep, va_arg(list, double));
+					break;
+				case 's':
+					str = va_arg(list, char *);
+					if (!str)
+						str = "(nil)";
+					printf("%s%s", sep, str);
+					break;
+				default:
+					i++;
+					continue;
+			}
+			sep = ", ";
+			i++;
+		}
 	}
+
 	printf("\n");
-	va_end(strings);
+	va_end(list);
 }
