@@ -1,20 +1,25 @@
-#!/bin/bash
+#include "variadic_functions.h"
+#include <stdarg.h>
 
-# List of file names to create
-files=(
- 
-0-sum_them_all.c
-1-print_numbers.c
-2-print_strings.c
-3-print_all.c
+/**
+ * sum_them_all - Returns the sum of all its parameters.
+ * @n: The count of parameters passed to the function.
+ * @...: An unspecified number of parameters to find the sum of.
+ *
+ * Return: If n == 0 - 0.
+ * Otherwise, return the sum of all the provided parameters.
+ */
+int sum_them_all(const unsigned int n, ...)
+{
+	va_list ap;
+	unsigned int i;
+	int sum = 0;
 
+	va_start(ap, n);
 
-)
+	for (i = 0; i < n; i++)
+		sum += va_arg(ap, int);
 
-# Create each file with "#!/bin/bash" as the first line
-for file in "${files[@]}"; do
-    touch "$file"
-    echo '#include "main.h"
-#include <stdio.h>' > "$file"
-    
-done
+	va_end(ap);
+	return (sum);
+}
